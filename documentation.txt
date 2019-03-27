@@ -1,0 +1,130 @@
+bell50 v1.0
+
+
+Documentation
+
+Athar Mahmood
+
+------------
+
+
+
+1. Introduction
+
+
+bell50 is designed to ring a bell through the speakers connected via the audio output of a raspberry pi. The user can program the times remotely using the webserver. The ideal scenario for this product would be in a school, but it can also be used as a personal alarm clock. 
+
+
+
+2. System Requirements
+
+
+
+Raspberry Pi 3
+
+2GB of storage
+
+LAN network
+
+Raspbian OS 
+Jessie
+Audio system (for sound output)
+
+
+
+3. Setup
+
+
+This guide assumes you have a Raspberry Pi 3 setup with the Raspbian OS Jessie and connected to a network with internet. It may work on older models and OS but has not been tested. 
+
+
+
+3.1 
+You will need to install apache2 and php if it is not already installed. 
+To install apache2 and php open the terminal and run the following command:
+	
+	
+sudo apt-get install apache 2 -y
+	
+sudo apt-get install php5 libapache2-mod-php5 -y
+	
+sudo rm /var/www/html/index.html
+
+
+
+3.2 
+Unzip bell50.zip to your /home/pi/bell50 directory (make the bell50 directory) and unzip html.zip to your /var/www/html directory
+
+
+
+3.3 
+Set the launcher script to run automatically each time the raspberry pie boots up using the following commands:
+
+	
+cd /home/pi/bell50
+	
+chmod 755 launcher.sh
+	
+cd 
+	
+mkdir logs
+
+	
+sudo crontab -e
+	(Now you will edit the crontab file using the Nano editor)
+
+(scroll to the end of the file and then add then add the line below)
+	
+
+@reboot sh /home/pi/bell50/launcher.sh >/home/pi/logs/cronlog 2>&1
+	
+(Now press CTRL and X to exit the editor and press Y to confirm the changes)
+	
+(You can now reboot the system using the command below)
+	
+sudo reboot
+
+
+
+4. Using bell50
+
+Now that bell50 is setup you can access the user interface from any browser that is on the same LAN as the raspberry pi
+
+
+
+4.1 
+Access the interface by typing in the IP address of the raspberry pi into your browser (You can find the IP address by typing ifconfig in the terminal of the pi and looking for the IPv4 address of the network you are connected to)
+ 
+
+
+4.2 
+Add a new bell time by clicking the 'Add Bell' link. Follow the instructions and remember to input the time in the HHMM format so 9:15 AM will go as 0915
+
+
+
+4.3 
+Go back to the home page to see a list of the bell times 
+
+
+
+4.4 
+Should you need to remove the bell times you can click the Delete Bells link on the home page and click the link to clear all the bell times
+
+
+
+4.5 Once the bell times have been programmed you should reboot the Raspberry Pi for the changes to take effect
+
+
+
+
+5. Troubleshooting
+
+
+5.1 
+If the bells are sounding at different times, it is probably because the time on the Pi is incorrect. Check that the time zone and time is correct in your system settings.
+
+
+5.2 
+If the script has been closed it can be reopened by using the command:
+	
+sudo sh /home/pi/bell50/launcher.sh	 

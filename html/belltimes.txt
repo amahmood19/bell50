@@ -1,0 +1,6 @@
+1230 : bell 5
+2100 : night bell
+2200 : final bell
+2149 : bell night
+2152 : night test
+2154 : nighty

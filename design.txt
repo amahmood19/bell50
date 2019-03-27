@@ -1,0 +1,32 @@
+bell50 v1.0
+
+
+Design
+
+Athar Mahmood
+
+------------
+
+bell50 was created to provide a low-cost and simple way to sound bells at given times, making the programming of the times an easy task.
+
+
+
+The script to run the bell sound was created in Python, whilst the webserver was created using HTML, CSS and PHP. It may have been possible to create it entirely in PHP without using Python, but I did not explore the options of connecting the php to the pi hardware. Therefore Python seemed to be the natural choice for compatibility's sake.
+It may also have been possible to create the project entirely in Python, but I had no knowledge of using Python on the web.
+ 
+
+
+In Python I oddly made use of the pygame library to play the sounds. The reason for this choice was that it seemed to be the most suitable for playing audio on the raspberry pi as other libraries were reported to not work too well with the raspberry pi hardware. 
+
+
+
+The Python script was split into two files, one script was solely to play the sound using the pygame library and the other contained the script to read the bell times and sound the bell at the appropriate time. The reason for this design was for future expansion to use different libraries to play the sound on different hardware. At this point one bell sound has been hard-coded but there are plans to allow the user to choose from a list of sounds through the web interface. 
+
+
+
+The design of the web interface was extremely simplistic, reflecting the lightweight naure of this project. At this point there is no user authentication to access the web interface. I decided to keep the current time on each of the pages as this is an important aspect of the system and the user should be able to see if the time is ever wrong. 
+
+
+
+In the delete bell page, there is not the option to delete individual bells, but only an option to delete all the bells. This seemed difficult to implement using a textfile and may have been easier if I was using mySQL. 
+
